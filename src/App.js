@@ -3,6 +3,7 @@ import AddImage from './components/AddImage/AddImage'
 import ModelImage from './components/ModelImage/ModelImage'
 import './App.css';
 import Popup from './components/Popup/Popup';  
+import Spinner from './components/Spinner/Spinner';  
 import Clarifai from 'clarifai';
 
 //Initialize machine learning api
@@ -19,6 +20,8 @@ function App() {
   const [box, setBox] = useState([])
    //Initialize the predictions output array from api
   const [predictions, setPredictions] = useState([])
+  //Initialize the loading spinner, will be used once api is loading the face predictions
+  const [loading, setLoading] = useState(false)
 
   //function for detecting the face and frame it
   const facePosition = data => {
@@ -42,6 +45,7 @@ function App() {
   //function for predicting the face using the api, will trigger when "Add Face" button is triggered
   const onSubmit = () => {
     setImgUrl(input)
+    setLoading(true)
     app.models.predict('c0c0ac362b03416da06ab3fa36fb58e3', input)
     .then(response => {
       const predict_arr = []
@@ -61,13 +65,18 @@ function App() {
 
   const refreshPage = () => { 
       window.location.reload(); 
+  }  
+
+  const updateLoading = () => { 
+      setLoading(false); 
   }
 
   return (
     <div className="App">
+    {loading && <Spinner />}
     <AddImage handleInputChange={handleInputChange} onSubmit={onSubmit}/>
     <ModelImage imgUrl={imgUrl} box={box} /> 
-    {predictions.length !== 0 && <Popup   predictions={predictions}  refreshPage={refreshPage} />} 
+    {predictions.length !== 0 && <Popup  updateLoading={updateLoading} predictions={predictions}  refreshPage={refreshPage} />} 
     </div>
   );
 }
