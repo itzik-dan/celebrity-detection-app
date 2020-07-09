@@ -56,7 +56,7 @@ function App() {
       setBox(facePosition(response))
   })
     .catch(err => {
-      let r = window.confirm("Pictue is too blurry, press 'OK' to add new vivid picture or 'Cancel' to go back." ); 
+      let r = window.confirm("Pictue is too blurry, press 'OK' to add new vivid picture." ); 
       if (r === true){ 
         window.location.reload(); 
       }
