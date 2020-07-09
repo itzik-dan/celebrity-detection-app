@@ -1,0 +1,32 @@
+.popup {  
+  position: fixed;  
+  width: 30%;  
+  height: 30%;  
+  top: 20%;  
+  left: 66%;  
+  right: 0;  
+  bottom: 0;  
+  margin: auto;  
+  background-color: #FFFFFF;  
+}  
+.popup\_inner {  
+  position: absolute;  
+  left: 25%;  
+  right: 25%;  
+  top: 25%;  
+  bottom: 25%;  
+  margin: auto;  
+  border-radius: 20px;  
+  background: white;  
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
