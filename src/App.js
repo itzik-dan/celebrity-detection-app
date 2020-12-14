@@ -12,17 +12,17 @@ const app = new Clarifai.App({
 });
 
 function App() {
-  //Initialize the image input field
+  // Initialize the image input field
   const [input, setInput] = useState("");
   const [imgUrl, setImgUrl] = useState("");
-  //Initialize the face recognition frame
+  // Initialize the face recognition frame
   const [box, setBox] = useState([]);
-  //Initialize the predictions output array from api
+  // Initialize the predictions output array from api
   const [predictions, setPredictions] = useState([]);
-  //Initialize the loading spinner, will be used once api is loading the face predictions
+  // Initialize the loading spinner, will be used once api is loading the face predictions
   const [loading, setLoading] = useState(false);
 
-  //function for detecting the face and frame it
+  // Function for detecting the face and frame it
   const facePosition = (data) => {
     const boundaries = data.outputs[0].data.regions[0].region_info.bounding_box;
     const image = document.getElementById("img");
@@ -36,12 +36,12 @@ function App() {
     };
   };
 
-  //function for updating the image url input field
+  // Function for updating the image url input field
   const handleInputChange = (event) => {
     setInput(event.target.value);
   };
 
-  //function for predicting the face using the api, will trigger when "Predict" button is triggered
+  // Function for predicting the face using the api, will trigger when "Predict" button is triggered
   const onSubmit = () => {
     setImgUrl(input);
     setLoading(true);
